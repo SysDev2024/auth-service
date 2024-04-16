@@ -20,6 +20,8 @@ import org.springframework.security.core.GrantedAuthority;
 import org.springframework.security.core.authority.SimpleGrantedAuthority;
 import org.springframework.security.core.userdetails.UserDetails;
 
+import java.time.LocalDate;
+
 @Data
 @Builder
 @NoArgsConstructor
@@ -42,8 +44,9 @@ public class User implements UserDetails {
     private String phone;
     private String SSN;
     private String consentId;
-    private Date consentExire;
+    private LocalDate consentExire;
     private String consentStatus;
+    
 
 
     @Enumerated(EnumType.STRING)

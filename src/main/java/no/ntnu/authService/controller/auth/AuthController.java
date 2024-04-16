@@ -13,7 +13,15 @@ import no.ntnu.authService.model.DTO.auth.AuthResponse;
 import no.ntnu.authService.model.DTO.auth.LoginRequest;
 import no.ntnu.authService.model.DTO.auth.MessageResponse;
 import no.ntnu.authService.model.DTO.auth.RegisterRequest;
+import no.ntnu.authService.security.JwtService;
 import no.ntnu.authService.service.AuthService;
+
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.http.HttpStatus;
+import org.springframework.web.bind.annotation.RequestParam;
+
+import org.springframework.security.core.userdetails.UserDetailsService;
+import org.springframework.security.core.userdetails.UserDetails;
 
 @RestController
 @RequestMapping(value = "/auth")
@@ -22,6 +30,12 @@ import no.ntnu.authService.service.AuthService;
 public class AuthController {
 
     private final AuthService authService;
+
+    @Autowired
+    private JwtService jwtService;
+
+    @Autowired
+    private UserDetailsService userDetailsService;
 
     @GetMapping("Hello")
     public String hello() {
@@ -47,6 +61,17 @@ public class AuthController {
     public ResponseEntity<AuthResponse> verifyEmail(String token) {
 
         return ResponseEntity.ok(authService.verifyEmail(token));
+    }
+
+    @GetMapping("/validateToken")
+    public ResponseEntity<Boolean> validateToken(@RequestParam String token) {
+        try {
+            UserDetails userDetails = userDetailsService.loadUserByUsername(jwtService.extractUsername(token));
+            boolean isValid = jwtService.isTokenValid(token, userDetails);
+            return ResponseEntity.ok(isValid);
+        } catch (Exception e) {
+            return ResponseEntity.status(HttpStatus.UNAUTHORIZED).body(false);
+        }
     }
 
 }

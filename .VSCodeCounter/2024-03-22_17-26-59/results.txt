@@ -1,0 +1,78 @@
+Date : 2024-03-22 17:26:59
+Directory : c:\Users\pc\Desktop\Quizz\quized
+Total : 24 files,  761 codes, 61 comments, 237 blanks, all 1059 lines
+
+Languages
++-----------------+------------+------------+------------+------------+------------+
+| language        | files      | code       | comment    | blank      | total      |
++-----------------+------------+------------+------------+------------+------------+
+| Java            |         20 |        539 |         10 |        181 |        730 |
+| Batch           |          1 |        118 |         51 |         37 |        206 |
+| XML             |          1 |         82 |          0 |          7 |         89 |
+| Java Properties |          2 |         22 |          0 |         12 |         34 |
++-----------------+------------+------------+------------+------------+------------+
+
+Directories
++---------------------------------------------------------------------------------------------------------------------------+------------+------------+------------+------------+------------+
+| path                                                                                                                      | files      | code       | comment    | blank      | total      |
++---------------------------------------------------------------------------------------------------------------------------+------------+------------+------------+------------+------------+
+| .                                                                                                                         |         24 |        761 |         61 |        237 |      1,059 |
+| . (Files)                                                                                                                 |          2 |        200 |         51 |         44 |        295 |
+| .mvn                                                                                                                      |          1 |          2 |          0 |          1 |          3 |
+| .mvn\wrapper                                                                                                              |          1 |          2 |          0 |          1 |          3 |
+| src                                                                                                                       |         21 |        559 |         10 |        192 |        761 |
+| src\main                                                                                                                  |         20 |        550 |         10 |        187 |        747 |
+| src\main\java                                                                                                             |         19 |        530 |         10 |        176 |        716 |
+| src\main\java\no                                                                                                          |         19 |        530 |         10 |        176 |        716 |
+| src\main\java\no\ntnu                                                                                                     |         19 |        530 |         10 |        176 |        716 |
+| src\main\java\no\ntnu\quized                                                                                              |         19 |        530 |         10 |        176 |        716 |
+| src\main\java\no\ntnu\quized (Files)                                                                                      |          2 |         47 |          0 |         15 |         62 |
+| src\main\java\no\ntnu\quized\controller                                                                                   |          1 |         38 |          3 |         12 |         53 |
+| src\main\java\no\ntnu\quized\controller\auth                                                                              |          1 |         38 |          3 |         12 |         53 |
+| src\main\java\no\ntnu\quized\model                                                                                        |          7 |        148 |          2 |         45 |        195 |
+| src\main\java\no\ntnu\quized\model\DTO                                                                                    |          4 |         54 |          0 |         18 |         72 |
+| src\main\java\no\ntnu\quized\model\DTO\auth                                                                               |          4 |         54 |          0 |         18 |         72 |
+| src\main\java\no\ntnu\quized\model\User                                                                                   |          3 |         94 |          2 |         27 |        123 |
+| src\main\java\no\ntnu\quized\repository                                                                                   |          2 |         16 |          0 |         10 |         26 |
+| src\main\java\no\ntnu\quized\security                                                                                     |          3 |        143 |          1 |         41 |        185 |
+| src\main\java\no\ntnu\quized\service                                                                                      |          4 |        138 |          4 |         53 |        195 |
+| src\main\java\no\ntnu\quized\service (Files)                                                                              |          1 |         72 |          3 |         23 |         98 |
+| src\main\java\no\ntnu\quized\service\registration                                                                         |          3 |         66 |          1 |         30 |         97 |
+| src\main\resources                                                                                                        |          1 |         20 |          0 |         11 |         31 |
+| src\test                                                                                                                  |          1 |          9 |          0 |          5 |         14 |
+| src\test\java                                                                                                             |          1 |          9 |          0 |          5 |         14 |
+| src\test\java\no                                                                                                          |          1 |          9 |          0 |          5 |         14 |
+| src\test\java\no\ntnu                                                                                                     |          1 |          9 |          0 |          5 |         14 |
+| src\test\java\no\ntnu\quized                                                                                              |          1 |          9 |          0 |          5 |         14 |
++---------------------------------------------------------------------------------------------------------------------------+------------+------------+------------+------------+------------+
+
+Files
++---------------------------------------------------------------------------------------------------------------------------+-----------------+------------+------------+------------+------------+
+| filename                                                                                                                  | language        | code       | comment    | blank      | total      |
++---------------------------------------------------------------------------------------------------------------------------+-----------------+------------+------------+------------+------------+
+| c:\Users\pc\Desktop\Quizz\quized\.mvn\wrapper\maven-wrapper.properties                                                    | Java Properties |          2 |          0 |          1 |          3 |
+| c:\Users\pc\Desktop\Quizz\quized\mvnw.cmd                                                                                 | Batch           |        118 |         51 |         37 |        206 |
+| c:\Users\pc\Desktop\Quizz\quized\pom.xml                                                                                  | XML             |         82 |          0 |          7 |         89 |
+| c:\Users\pc\Desktop\Quizz\quized\src\main\java\no\ntnu\quized\ApplicationConfig.java                                      | Java            |         38 |          0 |         10 |         48 |
+| c:\Users\pc\Desktop\Quizz\quized\src\main\java\no\ntnu\quized\QuizedApplication.java                                      | Java            |          9 |          0 |          5 |         14 |
+| c:\Users\pc\Desktop\Quizz\quized\src\main\java\no\ntnu\quized\controller\auth\AuthController.java                         | Java            |         38 |          3 |         12 |         53 |
+| c:\Users\pc\Desktop\Quizz\quized\src\main\java\no\ntnu\quized\model\DTO\auth\AuthResponse.java                            | Java            |         12 |          0 |          4 |         16 |
+| c:\Users\pc\Desktop\Quizz\quized\src\main\java\no\ntnu\quized\model\DTO\auth\LoginRequest.java                            | Java            |         13 |          0 |          5 |         18 |
+| c:\Users\pc\Desktop\Quizz\quized\src\main\java\no\ntnu\quized\model\DTO\auth\MessageResponse.java                         | Java            |         12 |          0 |          4 |         16 |
+| c:\Users\pc\Desktop\Quizz\quized\src\main\java\no\ntnu\quized\model\DTO\auth\RegisterRequest.java                         | Java            |         17 |          0 |          5 |         22 |
+| c:\Users\pc\Desktop\Quizz\quized\src\main\java\no\ntnu\quized\model\User\EmailVerificationToken.java                      | Java            |         30 |          1 |          9 |         40 |
+| c:\Users\pc\Desktop\Quizz\quized\src\main\java\no\ntnu\quized\model\User\Role.java                                        | Java            |          5 |          0 |          2 |          7 |
+| c:\Users\pc\Desktop\Quizz\quized\src\main\java\no\ntnu\quized\model\User\User.java                                        | Java            |         59 |          1 |         16 |         76 |
+| c:\Users\pc\Desktop\Quizz\quized\src\main\java\no\ntnu\quized\repository\EmailVerificationTokenRepository.java            | Java            |          7 |          0 |          3 |         10 |
+| c:\Users\pc\Desktop\Quizz\quized\src\main\java\no\ntnu\quized\repository\UserRepository.java                              | Java            |          9 |          0 |          7 |         16 |
+| c:\Users\pc\Desktop\Quizz\quized\src\main\java\no\ntnu\quized\security\JwtAuthentificationFilter.java                     | Java            |         43 |          0 |         10 |         53 |
+| c:\Users\pc\Desktop\Quizz\quized\src\main\java\no\ntnu\quized\security\JwtService.java                                    | Java            |         54 |          0 |         18 |         72 |
+| c:\Users\pc\Desktop\Quizz\quized\src\main\java\no\ntnu\quized\security\SecurityConfiguration.java                         | Java            |         46 |          1 |         13 |         60 |
+| c:\Users\pc\Desktop\Quizz\quized\src\main\java\no\ntnu\quized\service\AuthService.java                                    | Java            |         72 |          3 |         23 |         98 |
+| c:\Users\pc\Desktop\Quizz\quized\src\main\java\no\ntnu\quized\service\registration\EmailVerificationTokenService.java     | Java            |          8 |          0 |          5 |         13 |
+| c:\Users\pc\Desktop\Quizz\quized\src\main\java\no\ntnu\quized\service\registration\EmailVerificationTokenServiceImpl.java | Java            |         31 |          1 |         14 |         46 |
+| c:\Users\pc\Desktop\Quizz\quized\src\main\java\no\ntnu\quized\service\registration\MailService.java                       | Java            |         27 |          0 |         11 |         38 |
+| c:\Users\pc\Desktop\Quizz\quized\src\main\resources\application.properties                                                | Java Properties |         20 |          0 |         11 |         31 |
+| c:\Users\pc\Desktop\Quizz\quized\src\test\java\no\ntnu\quized\QuizedApplicationTests.java                                 | Java            |          9 |          0 |          5 |         14 |
+| Total                                                                                                                     |                 |        761 |         61 |        237 |      1,059 |
++---------------------------------------------------------------------------------------------------------------------------+-----------------+------------+------------+------------+------------+

@@ -1,0 +1,55 @@
+
+
+User1
+{
+    "username": "magnus411",
+    "firstName": "Magnus",
+    "lastName": "Gjerstad",
+    "password": "pass",
+    "email": "magnusgjerstad00@gmail.com",
+    "phone": "48218789"
+}
+
+
+
+
+
+Github
+Java
+Backend
+CI CD
+
+
+
+Login
+Create user
+
+
+GET POST myQuizes
+Search - name - tag
+
+
+Duolingo med andre spørsmål - slutt poeng - scoreboard
+Dynamisk link 
+Co Authors
+Revision or commenting fetures
+DRAFT quizzed - revision quiz
+Only me, shared
+
+
+ROLES
+Organization
+Quiz team
+
+Dropdown, multiple choise, true false, fill in the blank
+Legg til bilde / gif, answer method, format,
+
+
+Progress tracker - Samme quis om og om igjjen, antall quiz, ulike tags or categories, Feedback
+Chatbot, 
+
+
+
+
+
+

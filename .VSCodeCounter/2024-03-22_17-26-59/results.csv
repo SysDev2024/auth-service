@@ -1,0 +1,26 @@
+"filename", "language", "XML", "Java Properties", "Java", "Batch", "comment", "blank", "total"
+"c:\Users\pc\Desktop\Quizz\quized\.mvn\wrapper\maven-wrapper.properties", "Java Properties", 0, 2, 0, 0, 0, 1, 3
+"c:\Users\pc\Desktop\Quizz\quized\mvnw.cmd", "Batch", 0, 0, 0, 118, 51, 37, 206
+"c:\Users\pc\Desktop\Quizz\quized\pom.xml", "XML", 82, 0, 0, 0, 0, 7, 89
+"c:\Users\pc\Desktop\Quizz\quized\src\main\java\no\ntnu\quized\ApplicationConfig.java", "Java", 0, 0, 38, 0, 0, 10, 48
+"c:\Users\pc\Desktop\Quizz\quized\src\main\java\no\ntnu\quized\QuizedApplication.java", "Java", 0, 0, 9, 0, 0, 5, 14
+"c:\Users\pc\Desktop\Quizz\quized\src\main\java\no\ntnu\quized\controller\auth\AuthController.java", "Java", 0, 0, 38, 0, 3, 12, 53
+"c:\Users\pc\Desktop\Quizz\quized\src\main\java\no\ntnu\quized\model\DTO\auth\AuthResponse.java", "Java", 0, 0, 12, 0, 0, 4, 16
+"c:\Users\pc\Desktop\Quizz\quized\src\main\java\no\ntnu\quized\model\DTO\auth\LoginRequest.java", "Java", 0, 0, 13, 0, 0, 5, 18
+"c:\Users\pc\Desktop\Quizz\quized\src\main\java\no\ntnu\quized\model\DTO\auth\MessageResponse.java", "Java", 0, 0, 12, 0, 0, 4, 16
+"c:\Users\pc\Desktop\Quizz\quized\src\main\java\no\ntnu\quized\model\DTO\auth\RegisterRequest.java", "Java", 0, 0, 17, 0, 0, 5, 22
+"c:\Users\pc\Desktop\Quizz\quized\src\main\java\no\ntnu\quized\model\User\EmailVerificationToken.java", "Java", 0, 0, 30, 0, 1, 9, 40
+"c:\Users\pc\Desktop\Quizz\quized\src\main\java\no\ntnu\quized\model\User\Role.java", "Java", 0, 0, 5, 0, 0, 2, 7
+"c:\Users\pc\Desktop\Quizz\quized\src\main\java\no\ntnu\quized\model\User\User.java", "Java", 0, 0, 59, 0, 1, 16, 76
+"c:\Users\pc\Desktop\Quizz\quized\src\main\java\no\ntnu\quized\repository\EmailVerificationTokenRepository.java", "Java", 0, 0, 7, 0, 0, 3, 10
+"c:\Users\pc\Desktop\Quizz\quized\src\main\java\no\ntnu\quized\repository\UserRepository.java", "Java", 0, 0, 9, 0, 0, 7, 16
+"c:\Users\pc\Desktop\Quizz\quized\src\main\java\no\ntnu\quized\security\JwtAuthentificationFilter.java", "Java", 0, 0, 43, 0, 0, 10, 53
+"c:\Users\pc\Desktop\Quizz\quized\src\main\java\no\ntnu\quized\security\JwtService.java", "Java", 0, 0, 54, 0, 0, 18, 72
+"c:\Users\pc\Desktop\Quizz\quized\src\main\java\no\ntnu\quized\security\SecurityConfiguration.java", "Java", 0, 0, 46, 0, 1, 13, 60
+"c:\Users\pc\Desktop\Quizz\quized\src\main\java\no\ntnu\quized\service\AuthService.java", "Java", 0, 0, 72, 0, 3, 23, 98
+"c:\Users\pc\Desktop\Quizz\quized\src\main\java\no\ntnu\quized\service\registration\EmailVerificationTokenService.java", "Java", 0, 0, 8, 0, 0, 5, 13
+"c:\Users\pc\Desktop\Quizz\quized\src\main\java\no\ntnu\quized\service\registration\EmailVerificationTokenServiceImpl.java", "Java", 0, 0, 31, 0, 1, 14, 46
+"c:\Users\pc\Desktop\Quizz\quized\src\main\java\no\ntnu\quized\service\registration\MailService.java", "Java", 0, 0, 27, 0, 0, 11, 38
+"c:\Users\pc\Desktop\Quizz\quized\src\main\resources\application.properties", "Java Properties", 0, 20, 0, 0, 0, 11, 31
+"c:\Users\pc\Desktop\Quizz\quized\src\test\java\no\ntnu\quized\QuizedApplicationTests.java", "Java", 0, 0, 9, 0, 0, 5, 14
+"Total", "-", 82, 22, 539, 118, 61, 237, 1059

@@ -34,7 +34,7 @@ public class EmailVerificationToken {
     private LocalDateTime expiryDate;
 
     public Object orElseThrow(Object object) {
-        // TODO Auto-generated method stub
+        // TODO(Magnus) Auto-generated method stub
         throw new UnsupportedOperationException("Unimplemented method 'orElseThrow'");
     }
 }

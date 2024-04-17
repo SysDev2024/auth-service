@@ -1,4 +1,19 @@
 
+RUN:
+mvn spring-boot:run clean 
+
+
+
+ENDPOINTS:
+http://loaclhost:8080/
+
+/api/v1/MICROSERVICE/ENDPOINT
+
+Feks:
+/api/v1/auth/login
+
+Github:
+
 
 User1
 {
@@ -14,46 +29,3 @@ User1
 
 
 
-Github
-Java
-Backend
-CI CD
-
-
-
-Login
-Create user
-
-
-GET POST myQuizes
-Search - name - tag
-
-
-Duolingo med andre spørsmål - slutt poeng - scoreboard
-Dynamisk link 
-Co Authors
-Revision or commenting fetures
-DRAFT quizzed - revision quiz
-Only me, shared
-
-
-ROLES
-Organization
-Quiz team
-
-Dropdown, multiple choise, true false, fill in the blank
-Legg til bilde / gif, answer method, format,
-
-
-Progress tracker - Samme quis om og om igjjen, antall quiz, ulike tags or categories, Feedback
-Chatbot, 
-
-
-
-
-
-
-
-URL!!!!
-
-localhost:8080/api/v1/auth/ENDPOINT

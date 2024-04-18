@@ -90,9 +90,16 @@ public class AuthService {
     }
 
     public AuthResponse login(LoginRequest request) {
-        authenticationManager
-                .authenticate(new UsernamePasswordAuthenticationToken(request.getUsername(), request.getPassword()));
-        var user = userRepository.findByUsername(request.getUsername()).orElseThrow();
+
+        try {
+            authenticationManager
+                    .authenticate(
+                            new UsernamePasswordAuthenticationToken(request.getUsername(), request.getPassword()));
+        } catch (Exception e) {
+            throw new IllegalArgumentException("User not found, wrong username or password");
+        }
+        var user = userRepository.findByUsername(request.getUsername()).orElseThrow(
+                () -> new IllegalArgumentException("User not found, wrong username or password"));
         var jwtToken = jwtService.generateToken(user);
         return AuthResponse.builder().token(jwtToken).build();
     }

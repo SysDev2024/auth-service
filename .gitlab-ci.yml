@@ -1,3 +1,5 @@
+
+
 cache: 
   paths:
     - .m2/repository
@@ -7,10 +9,8 @@ stages:
   - deploy
 
 
-
 # Build Stage
 build:
-  image: maven:3.8.5-openjdk-17-slim
   stage: build
   script:
     - mvn package -DskipTests
@@ -18,15 +18,15 @@ build:
     paths:
       - target/*.jar  
 
-
+# Deploy Stage (example for development) 
 deploy:
+  image: docker:stable
+  services:
+   - docker:dind
   stage: deploy
-  image:
-    name: gcr.io/kaniko-project/executor:v1.14.0-debug
-    entrypoint: [""]
+  environment: development
   script:
-    - echo "{\"auths\":{\"${CI_REGISTRY}\":{\"auth\":\"$(printf "%s:%s" "${CI_REGISTRY_USER}" "${CI_REGISTRY_PASSWORD}" | base64 | tr -d '\n')\"}}}" > /kaniko/.docker/config.json
-    - /kaniko/executor \
-        --context "${CI_PROJECT_DIR}" \
-        --dockerfile "${CI_PROJECT_DIR}/Dockerfile" \
-        --destination "${CI_REGISTRY_IMAGE}:${CI_COMMIT_TAG}"
+    - export DOCKER_HOST=tcp://docker:2375/
+    - docker login registry.stud.idi.ntnu.no:5050 -u magngje -p glpat-f2bRq7vzUfxVNsQrM8Yz
+    - docker build -t registry.stud.idi.ntnu.no:5050/idatt2106_2024_11/authservice:latest .
+    - docker push registry.stud.idi.ntnu.no:5050/idatt2106_2024_11/authservice:latest

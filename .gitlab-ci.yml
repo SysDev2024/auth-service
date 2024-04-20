@@ -1,5 +1,6 @@
-image: maven:3.8.5-openjdk-17-slim
-
+image: docker:latest
+services:
+  - docker:dind
 
 cache: 
   paths:
@@ -10,15 +11,11 @@ stages:
   - build
   - deploy
 
-# Test Stage
-test:
-  stage: test
-  script:
-    - mvn test
 
 
 # Build Stage
 build:
+  image: maven:3.8.5-openjdk-17-slim
   stage: build
   script:
     - mvn package -DskipTests
@@ -36,3 +33,4 @@ deploy:
     - docker login $DOCKER_REGISTRY -u $DOCKER_USER -p $DOCKER_P
     - docker build -t $DOCKER_REGISTRY/$AUTH_IMAGE_NAME:latest .
     - docker push $DOCKER_REGISTRY/$AUTH_IMAGE_NAME:latest
+

@@ -1,8 +1,5 @@
-image: openjdk:17-alpine # Base Java 17 image
+image: maven:3.8.5-openjdk-17-slim
 
-variables:
-  DOCKER_REGISTRY: registry.stud.idi.ntnu.no:5050
-  IMAGE_NAME: idatt2106_2024_11/authservice
 
 cache: 
   paths:
@@ -10,7 +7,6 @@ cache:
 
 stages:
   - test
-  - security
   - build
   - deploy
 
@@ -18,31 +14,25 @@ stages:
 test:
   stage: test
   script:
-    - ./mvnw test
+    - mvn test
 
-
-# Security Stage
-dependency-check:
-  stage: security
-  image: owasp/dependency-check 
-  script:
-    - owasp-dependency-check --project "Your Project Name"  # ... add necessary flags
 
 # Build Stage
 build:
   stage: build
   script:
-    - ./mvnw package -DskipTests
+    - mvn package -DskipTests
   artifacts:
     paths:
       - target/*.jar  
 
 # Deploy Stage (example for development) 
-deploy-dev:
+deploy:
   stage: deploy
   environment: development
+  services:
+    - docker:dind
   script:
     - docker login $DOCKER_REGISTRY -u $DOCKER_USER -p $DOCKER_P
     - docker build -t $DOCKER_REGISTRY/$AUTH_IMAGE_NAME:latest .
     - docker push $DOCKER_REGISTRY/$AUTH_IMAGE_NAME:latest
-

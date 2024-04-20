@@ -28,6 +28,7 @@ deploy:
   stage: deploy
   environment: development
   script:
+    - unset DOCKER_HOST
     - docker login registry.stud.idi.ntnu.no:5050 -u magngje -p glpat-f2bRq7vzUfxVNsQrM8Yz
-    - docker build -t registry.stud.idi.ntnu.no:5050/idatt2106_2024_11/authservice .
-    - docker push registry.stud.idi.ntnu.no:5050/idatt2106_2024_11/authservice
+    - docker build -t registry.stud.idi.ntnu.no:5050/idatt2106_2024_11/authservice:latest .
+    - docker push registry.stud.idi.ntnu.no:5050/idatt2106_2024_11/authservice:latest

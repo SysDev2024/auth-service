@@ -1,4 +1,4 @@
-image: openjdk:17-alpine # Base Java 17 image
+image: maven:3.8.5-openjdk-17-slim
 
 
 cache: 
@@ -23,8 +23,7 @@ dependency-check:
   stage: security
   image: owasp/dependency-check 
   script:
-    - owasp-dependency-check --project "Your Project Name"  # ... add necessary flags
-
+    - owasp-dependency-check --project "AuthService"  
 # Build Stage
 build:
   stage: build
@@ -35,7 +34,7 @@ build:
       - target/*.jar  
 
 # Deploy Stage (example for development) 
-deploy-dev:
+deploy:
   stage: deploy
   environment: development
   script:

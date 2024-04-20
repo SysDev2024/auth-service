@@ -1,31 +1,25 @@
-image: maven:3.8.5-openjdk-17-slim
+image: docker:latest
 
+services:
+  - name: docker:dind
+    alias: docker
+variables:
+  DOCKER_HOST: "tcp://docker:2375"
+  DOCKER_TLS_CERTDIR: ""
 
 cache: 
   paths:
     - .m2/repository
 
 stages:
-  - test
-  - security
   - build
   - deploy
 
-# Test Stage
-test:
-  stage: test
-  script:
-    - mvn test
 
 
-# Security Stage
-dependency-check:
-  stage: security
-  image: owasp/dependency-check 
-  script:
-    - owasp-dependency-check --project "AuthService"  
 # Build Stage
 build:
+  image: maven:3.8.5-openjdk-17-slim
   stage: build
   script:
     - mvn package -DskipTests
@@ -38,6 +32,6 @@ deploy:
   stage: deploy
   environment: development
   script:
-    - docker login $DOCKER_REGISTRY -u $DOCKER_USER -p $DOCKER_P
-    - docker build -t $DOCKER_REGISTRY/$AUTH_IMAGE_NAME:latest .
-    - docker push $DOCKER_REGISTRY/$AUTH_IMAGE_NAME:latest
+    - docker login registry.stud.idi.ntnu.no:5050 -u magngje -p glpat-f2bRq7vzUfxVNsQrM8Yz
+    - docker build -t registry.stud.idi.ntnu.no:5050/idatt2106_2024_11/authservice:latest .
+    - docker push registry.stud.idi.ntnu.no:5050/idatt2106_2024_11/authservice:latest

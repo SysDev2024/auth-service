@@ -1,38 +1,38 @@
-
-
-cache: 
+image: maven:3.8.5-openjdk-17-slim
+cache:
   paths:
     - .m2/repository
 
 stages:
+  - test
   - build
   - deploy
 
+# Test Stage
+test:
+  stage: test
+  script:
+    - mvn test
 
 # Build Stage
 build:
-  image: maven:3.8.5-openjdk-17-slim
   stage: build
   script:
     - mvn package -DskipTests
   artifacts:
     paths:
-      - target/*.jar  
+      - target/*.jar
 
-
-# Deploy Stage (example for development) 
 deploy:
-  image: docker:latest
+  stage: build
+  image: docker:19.03.12
   services:
-    - name: docker:dind
-    alias: docker
-    command: ["--privileged"]
+    - docker:dind
   variables:
-    DOCKER_HOST: tcp://docker:2375/
+    DOCKER_HOST: "tcp://docker:2375"
     DOCKER_DRIVER: overlay2
-  stage: deploy
-  environment: development
-  script:
+  before_script:
     - docker login registry.stud.idi.ntnu.no:5050 -u magngje -p glpat-f2bRq7vzUfxVNsQrM8Yz
+  script:
     - docker build -t registry.stud.idi.ntnu.no:5050/idatt2106_2024_11/authservice:latest .
     - docker push registry.stud.idi.ntnu.no:5050/idatt2106_2024_11/authservice:latest

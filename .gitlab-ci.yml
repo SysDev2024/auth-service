@@ -25,11 +25,17 @@ build:
 
 deploy:
   stage: build
-  image: docker:19.03.12
+  image: docker:latest
   services:
-    - docker:dind
+    - name: docker:20-dind
+      alias: docker
+      command: [ "--tls=false" ]
+
   tags:
     - dind
+  variables:
+    DOCKER_HOST: "tcp://docker:2375"
+    DOCKER_TLS_CERTDIR: ""
 
   before_script:
     - docker login registry.stud.idi.ntnu.no:5050 -u magngje -p glpat-f2bRq7vzUfxVNsQrM8Yz

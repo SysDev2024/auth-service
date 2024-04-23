@@ -28,6 +28,9 @@ deploy:
   image: docker:19.03.12
   services:
     - docker:dind
+  tags:
+    - Builder
+
   variables:
     DOCKER_HOST: "tcp://docker:2375"
     DOCKER_DRIVER: overlay2

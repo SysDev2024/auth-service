@@ -1,4 +1,4 @@
-package no.ntnu.authService.security;
+package no.ntnu.microservice.security;
 
 import java.io.IOException;
 

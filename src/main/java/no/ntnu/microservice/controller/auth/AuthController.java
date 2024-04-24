@@ -1,4 +1,4 @@
-package no.ntnu.authService.controller.auth;
+package no.ntnu.microservice.controller.auth;
 
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
@@ -10,12 +10,12 @@ import org.springframework.web.bind.annotation.RestController;
 
 import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
-import no.ntnu.authService.model.DTO.auth.AuthResponse;
-import no.ntnu.authService.model.DTO.auth.LoginRequest;
-import no.ntnu.authService.model.DTO.auth.MessageResponse;
-import no.ntnu.authService.model.DTO.auth.RegisterRequest;
-import no.ntnu.authService.security.JwtService;
-import no.ntnu.authService.service.AuthService;
+import no.ntnu.microservice.model.DTO.auth.AuthResponse;
+import no.ntnu.microservice.model.DTO.auth.LoginRequest;
+import no.ntnu.microservice.model.DTO.auth.MessageResponse;
+import no.ntnu.microservice.model.DTO.auth.RegisterRequest;
+import no.ntnu.microservice.security.JwtService;
+import no.ntnu.microservice.service.AuthService;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.RequestParam;

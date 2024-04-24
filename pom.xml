@@ -9,7 +9,7 @@
 		<relativePath/> <!-- lookup parent from repository -->
 	</parent>
 	<groupId>no.ntnu</groupId>
-	<artifactId>authService</artifactId>
+	<artifactId>microservice</artifactId>
 	<version>0.0.1-SNAPSHOT</version>
 	<name>AuthService</name>
 	<description>A microservice for authentication</description>
@@ -98,7 +98,8 @@
 				<scope>import</scope>
 			</dependency>
 		</dependencies>
-	</dependencyManagement>	<build>
+	</dependencyManagement>	
+	<build>
 		<plugins>
 			<plugin>
 				<groupId>org.springframework.boot</groupId>

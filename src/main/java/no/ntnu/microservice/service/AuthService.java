@@ -1,4 +1,4 @@
-package no.ntnu.authService.service;
+package no.ntnu.microservice.service;
 
 import java.time.LocalDateTime;
 
@@ -11,16 +11,16 @@ import org.springframework.stereotype.Service;
 import jakarta.transaction.Transactional;
 import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
-import no.ntnu.authService.model.DTO.auth.AuthResponse;
-import no.ntnu.authService.model.DTO.auth.LoginRequest;
-import no.ntnu.authService.model.DTO.auth.MessageResponse;
-import no.ntnu.authService.model.DTO.auth.RegisterRequest;
-import no.ntnu.authService.model.sharedmodels.User.Role;
-import no.ntnu.authService.model.sharedmodels.User.User;
-import no.ntnu.authService.repository.UserRepository;
-import no.ntnu.authService.security.JwtService;
-import no.ntnu.authService.service.registration.EmailVerificationTokenService;
-import no.ntnu.authService.service.registration.MailService;
+import no.ntnu.microservice.model.DTO.auth.AuthResponse;
+import no.ntnu.microservice.model.DTO.auth.LoginRequest;
+import no.ntnu.microservice.model.DTO.auth.MessageResponse;
+import no.ntnu.microservice.model.DTO.auth.RegisterRequest;
+import no.ntnu.microservice.model.sharedmodels.user.Role;
+import no.ntnu.microservice.model.sharedmodels.user.User;
+import no.ntnu.microservice.repository.UserRepository;
+import no.ntnu.microservice.security.JwtService;
+import no.ntnu.microservice.service.registration.EmailVerificationTokenService;
+import no.ntnu.microservice.service.registration.MailService;
 
 @Service
 @RequiredArgsConstructor

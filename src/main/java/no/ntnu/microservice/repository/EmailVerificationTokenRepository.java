@@ -1,8 +1,8 @@
-package no.ntnu.authService.repository;
+package no.ntnu.microservice.repository;
 
 import org.springframework.data.jpa.repository.JpaRepository;
 
-import no.ntnu.authService.model.EmailVerificationToken;
+import no.ntnu.microservice.model.EmailVerificationToken;
 
 import java.util.Optional;
 

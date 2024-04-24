@@ -1,4 +1,4 @@
-package no.ntnu.authService;
+package no.ntnu.microservice;
 
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
@@ -12,7 +12,7 @@ import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.security.crypto.password.PasswordEncoder;
 
 import lombok.RequiredArgsConstructor;
-import no.ntnu.authService.repository.UserRepository;
+import no.ntnu.microservice.repository.UserRepository;
 
 @Configuration
 @RequiredArgsConstructor

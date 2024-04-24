@@ -1,7 +1,7 @@
-package no.ntnu.authService.service.registration;
+package no.ntnu.microservice.service.registration;
 
-import no.ntnu.authService.model.EmailVerificationToken;
-import no.ntnu.authService.model.sharedmodels.User.User;
+import no.ntnu.microservice.model.EmailVerificationToken;
+import no.ntnu.microservice.model.sharedmodels.user.User;
 
 public interface EmailVerificationTokenService {
     String generateVerificationToken(User user);

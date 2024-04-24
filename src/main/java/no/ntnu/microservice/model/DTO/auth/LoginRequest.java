@@ -1,4 +1,4 @@
-package no.ntnu.authService.model.DTO.auth;
+package no.ntnu.microservice.model.DTO.auth;
 
 import lombok.Data;
 import lombok.AllArgsConstructor;

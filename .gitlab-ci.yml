@@ -14,7 +14,7 @@ stages:
 test:
   stage: test
   script:
-    - mvn test -Dspring.profiles.active=test
+    - mvn test -Dspring.profiles.active=test clean
 
 # Dependency Scan Stage
 dependency_scan:

@@ -28,10 +28,17 @@ public class MailService {
     }
 
     private String constructEmailBody(User user, String token) {
-        String verificationLink = siteURL + "/verify?token=" + token;
-        return "Hello " + user.getFirstName() + user.getLastName() + ",\n\n" +
-                "Please click on the link below to verify your account:\n" +
-                verificationLink + "\n\n" +
-                "Thank you for registering!";
+        return String.format(
+                "Hei %s %s,\n\n" +
+                        "Velkommen til Sparesti! Vi er glade for å ha deg ombord. For å fullføre registreringen din og aktivere kontoen din, vennligst bekreft e-postadressen din ved å bruke følgende verifiseringstoken:\n\n"
+                        +
+                        "Verifiseringstoken: %s\n\n" +
+                        "Vennligst kopier og lim inn denne tokenen på verifiseringssiden som du kan nå gjennom følgende link:\n%s/user/verify\n\n"
+                        +
+                        "Takk for at du valgte Sparesti! Vi ser frem til å hjelpe deg i å oppnå dine mål.\n\n" +
+                        "Med vennlig hilsen,\n" +
+                        "Sparesti Teamet",
+                user.getFirstName(), user.getLastName(), token, siteURL);
     }
+
 }

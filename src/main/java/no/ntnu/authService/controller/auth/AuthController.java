@@ -17,11 +17,9 @@ import no.ntnu.authService.security.JwtService;
 import no.ntnu.authService.service.AuthService;
 
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.http.HttpStatus;
 import org.springframework.web.bind.annotation.RequestParam;
 
 import org.springframework.security.core.userdetails.UserDetailsService;
-import org.springframework.security.core.userdetails.UserDetails;
 
 @RestController
 @RequestMapping(value = "/auth")

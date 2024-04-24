@@ -2,7 +2,7 @@ package no.ntnu.authService.repository;
 
 import org.springframework.data.jpa.repository.JpaRepository;
 
-import no.ntnu.authService.model.User.User;
+import no.ntnu.authService.model.sharedmodels.User.User;
 
 import java.util.Optional;
 import java.util.UUID;

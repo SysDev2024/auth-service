@@ -2,7 +2,7 @@
 
 ## Overview
 
-AuthService is a crucial microservice in our larger architecture, designed to handle user authentication and authorization tasks. It supports operations for user registration, login, and email verification.
+AuthService is a microservice in our larger architecture, designed to handle user authentication and authorization tasks. It supports operations for user registration, login, and email verification.
 
 ## Features
 
@@ -12,6 +12,27 @@ AuthService is a crucial microservice in our larger architecture, designed to ha
 - **Swagger Documentation**: Access the Swagger UI for the service's API documentation at `/swagger-ui.html`.
 
 ## Getting Started
+
+## Test Access Point
+
+### Testing and Development
+
+For development and testing purposes, the AuthService is directly accessible via the following URL: [https://auth.sysdevservices.tech/](https://auth.sysdevservices.tech/)
+
+This test endpoint allows developers and testers to interact with the AuthService independently of the larger system.
+
+### Production Environment
+
+In the production environment, AuthService is designed to operate within a secure, private network. It communicates with other services through this internal network, ensuring enhanced security and performance:
+
+- **Internal Network**: AuthService and other microservices communicate over a private network, isolated from public access. This communication is done done through RabbitMQ.
+- **API Gateway**: The only point of public access to AuthService in production is through the API gateway. This gateway routes external requests to the appropriate services securely. 
+
+[https://api.sysdevservices.tech/](https://api.sysdevservices.tech/)
+
+This setup helps in managing security and traffic efficiently, ensuring that direct access to individual microservices like AuthService is restricted and controlled through the API gateway.
+
+
 
 ### Prerequisites
 
@@ -44,7 +65,7 @@ To clone the repository and navigate into the authService directory, run:
 ```bash
 git clone git@gitlab.stud.idi.ntnu.no:idatt2106_2024_11/authservice.git
 
-Husk å ha gyldig SSH Nøkkler
+#Remember to have valid SSH Keys to gitlab!
 ```
 
 ### Building and Running Locally with Maven
@@ -107,13 +128,22 @@ If you prefer not to build the image yourself, you can pull it directly from the
 
    As before, this will make the AuthService available on `localhost:8111`.
 
+### Running tests
+Testing the AuthService can be done by using the maven command:
+
+ ```
+mvn run test
+ ```
+This is also done automatically in the CICD pipeline
+
+
 ### Accessing the Service
 
 Once the AuthService is running, either through Maven locally or via Docker, you can access its endpoints and Swagger UI:
 
 - **Swagger UI**: Navigate to `http://localhost:8111/swagger-ui.html` in your web browser to view and interact with the API documentation and test out the endpoints.
 
-## Additional Commands
+## Running the whole system
 
 ### Docker Compose
 
@@ -122,3 +152,11 @@ To run AuthService as part of the full architecture, ensure you have Docker Comp
 ```bash
 docker-compose up
 ```
+To run the docker-compose in the backgroun use this command:
+```bash
+docker-compose up -d
+```
+The docker compose setup includes a MySql database that spins up test data. This data and this database will be different for the production database. 
+
+##### As teachers you can ofc access our actual production database aswell
+

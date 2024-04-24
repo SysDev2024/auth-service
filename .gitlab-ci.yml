@@ -13,8 +13,9 @@ stages:
 # Test Stage
 test:
   stage: test
+  variables:
+    GIT_SUBMODULE_STRATEGY: recursive
   script:
-    - git submodule update --remote --recursive
     - mvn test -Dspring.profiles.active=test clean
 
 # Dependency Scan Stage
@@ -30,8 +31,10 @@ dependency_scan:
 # Build Stage
 build:
   stage: build
+  variables:
+    GIT_SUBMODULE_STRATEGY: recursive
+
   script:
-    - git submodule update --remote --recursive
     - mvn package -DskipTests
   artifacts:
     paths:

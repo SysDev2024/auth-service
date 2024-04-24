@@ -14,7 +14,7 @@ stages:
 test:
   stage: test
   script:
-    - mvn test
+    - mvn test -Dspring.profiles.active=test
 
 # Dependency Scan Stage
 dependency_scan:
@@ -25,7 +25,6 @@ dependency_scan:
   artifacts:
     paths:
       - dependency-check-report/
-
 
 # Build Stage
 build:
@@ -55,4 +54,3 @@ deploy:
     - docker build -t reg.sysdevservices.tech/authservice:latest .
     - docker tag reg.sysdevservices.tech/authservice:latest reg.sysdevservices.tech/authservice:latest
     - docker push reg.sysdevservices.tech/authservice:latest
-

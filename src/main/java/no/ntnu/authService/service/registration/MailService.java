@@ -4,7 +4,7 @@ import org.springframework.mail.javamail.JavaMailSender;
 import org.springframework.stereotype.Service;
 
 import lombok.RequiredArgsConstructor;
-import no.ntnu.authService.model.User.User;
+import no.ntnu.authService.model.sharedmodels.User.User;
 
 import org.springframework.mail.SimpleMailMessage;
 

@@ -1,4 +1,4 @@
-package no.ntnu.authService.model.User;
+package no.ntnu.authService.model;
 
 import java.time.LocalDateTime;
 
@@ -13,6 +13,7 @@ import lombok.Data;
 import lombok.NoArgsConstructor;
 import lombok.ToString;
 import lombok.extern.slf4j.Slf4j;
+import no.ntnu.authService.model.sharedmodels.User.User;
 
 @Data
 @Entity

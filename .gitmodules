@@ -1,0 +1,3 @@
+[submodule "src/main/java/no/ntnu/authService/model/sharedmodels"]
+	path = src/main/java/no/ntnu/authService/model/sharedmodels
+	url = git@gitlab.stud.idi.ntnu.no:idatt2106_2024_11/shared-models.git

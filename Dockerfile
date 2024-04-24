@@ -4,7 +4,7 @@ LABEL maintainer="magnusgjerstad00@gmail.com"
 
 VOLUME /tmp
 
-EXPOSE 8080
+EXPOSE 8111
 
 ARG JAR_FILE=target/*.jar
 

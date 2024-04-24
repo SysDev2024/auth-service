@@ -15,8 +15,8 @@ import no.ntnu.authService.model.DTO.auth.AuthResponse;
 import no.ntnu.authService.model.DTO.auth.LoginRequest;
 import no.ntnu.authService.model.DTO.auth.MessageResponse;
 import no.ntnu.authService.model.DTO.auth.RegisterRequest;
-import no.ntnu.authService.model.User.Role;
-import no.ntnu.authService.model.User.User;
+import no.ntnu.authService.model.sharedmodels.User.Role;
+import no.ntnu.authService.model.sharedmodels.User.User;
 import no.ntnu.authService.repository.UserRepository;
 import no.ntnu.authService.security.JwtService;
 import no.ntnu.authService.service.registration.EmailVerificationTokenService;
@@ -90,9 +90,16 @@ public class AuthService {
     }
 
     public AuthResponse login(LoginRequest request) {
-        authenticationManager
-                .authenticate(new UsernamePasswordAuthenticationToken(request.getUsername(), request.getPassword()));
-        var user = userRepository.findByUsername(request.getUsername()).orElseThrow();
+
+        try {
+            authenticationManager
+                    .authenticate(
+                            new UsernamePasswordAuthenticationToken(request.getUsername(), request.getPassword()));
+        } catch (Exception e) {
+            throw new IllegalArgumentException("User not found, wrong username or password");
+        }
+        var user = userRepository.findByUsername(request.getUsername()).orElseThrow(
+                () -> new IllegalArgumentException("User not found, wrong username or password"));
         var jwtToken = jwtService.generateToken(user);
         return AuthResponse.builder().token(jwtToken).build();
     }

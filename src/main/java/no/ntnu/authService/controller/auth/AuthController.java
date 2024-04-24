@@ -1,5 +1,6 @@
 package no.ntnu.authService.controller.auth;
 
+import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PostMapping;
@@ -17,11 +18,9 @@ import no.ntnu.authService.security.JwtService;
 import no.ntnu.authService.service.AuthService;
 
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.http.HttpStatus;
 import org.springframework.web.bind.annotation.RequestParam;
 
 import org.springframework.security.core.userdetails.UserDetailsService;
-import org.springframework.security.core.userdetails.UserDetails;
 
 @RestController
 @RequestMapping(value = "/auth")
@@ -44,9 +43,12 @@ public class AuthController {
 
     @PostMapping("/login")
     public ResponseEntity<AuthResponse> login(@RequestBody LoginRequest request) {
-        log.info("Login attempt with username: {}", request.getUsername());
-
-        return ResponseEntity.ok(authService.login(request));
+        try {
+            return ResponseEntity.ok(authService.login(request));
+        } catch (Exception ex) {
+            AuthResponse errorResponse = new AuthResponse(ex.getMessage());
+            return ResponseEntity.status(HttpStatus.UNAUTHORIZED).body(errorResponse);
+        }
     }
 
     // TODO Email validation
@@ -54,7 +56,12 @@ public class AuthController {
     // Check password lenght
     @PostMapping("/register")
     public ResponseEntity<MessageResponse> register(@RequestBody RegisterRequest request) {
-        return ResponseEntity.ok(authService.register(request));
+        try {
+            return ResponseEntity.ok(authService.register(request));
+        } catch (Exception ex) {
+            MessageResponse errorResponse = new MessageResponse(ex.getMessage());
+            return ResponseEntity.status(HttpStatus.UNAUTHORIZED).body(errorResponse);
+        }
     }
 
     @GetMapping("/verify")

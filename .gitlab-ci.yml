@@ -1,38 +1,58 @@
+image: maven:3.8.5-openjdk-17-slim
 
-
-cache: 
+cache:
   paths:
-    - .m2/repository
+    - .m2/
 
 stages:
+  - test
+  - dependency_scan
   - build
   - deploy
+
+# Test Stage
+test:
+  stage: test
+  script:
+    - mvn test
+
+# Dependency Scan Stage
+dependency_scan:
+  stage: dependency_scan
+  image: owasp/dependency-check:latest
+  script:
+    - /usr/share/dependency-check/bin/dependency-check.sh --scan /workspace/target --format ALL --project "Your_Project_Name" --out /workspace/dependency-check-report
+  artifacts:
+    paths:
+      - dependency-check-report/
 
 
 # Build Stage
 build:
-  image: maven:3.8.5-openjdk-17-slim
   stage: build
   script:
     - mvn package -DskipTests
   artifacts:
     paths:
-      - target/*.jar  
+      - target/*.jar
 
-
-# Deploy Stage (example for development) 
+# Deploy Stage
 deploy:
+  stage: deploy
+  needs: ["build"]
   image: docker:latest
   services:
-    - name: docker:dind
-    alias: docker
-    command: ["--privileged"]
+    - name: docker:20-dind
+      alias: docker
+      command: ["--tls=false"]
+  tags:
+    - dind
   variables:
-    DOCKER_HOST: tcp://docker:2375/
-    DOCKER_DRIVER: overlay2
-  stage: deploy
-  environment: development
+    DOCKER_BUILDKIT: 1
+    DOCKER_HOST: "tcp://docker:2375"
+    DOCKER_TLS_CERTDIR: ""
   script:
-    - docker login registry.stud.idi.ntnu.no:5050 -u magngje -p glpat-f2bRq7vzUfxVNsQrM8Yz
-    - docker build -t registry.stud.idi.ntnu.no:5050/idatt2106_2024_11/authservice:latest .
-    - docker push registry.stud.idi.ntnu.no:5050/idatt2106_2024_11/authservice:latest
+    - docker build -t reg.sysdevservices.tech/authservice:latest .
+    - docker tag reg.sysdevservices.tech/authservice:latest reg.sysdevservices.tech/authservice:latest
+    - docker push reg.sysdevservices.tech/authservice:latest
+

@@ -59,5 +59,3 @@ deploy:
     - docker build -t reg.sysdevservices.tech/authservice:latest .
     - docker tag reg.sysdevservices.tech/authservice:latest reg.sysdevservices.tech/authservice:latest
     - docker push reg.sysdevservices.tech/authservice:latest
-  rules:
-    - if: '$CI_COMMIT_BRANCH == "main"'

@@ -35,7 +35,7 @@ build:
     GIT_SUBMODULE_STRATEGY: recursive
 
   script:
-    - mvn package -DskipTests
+    - mvn package -Dspring.profiles.active=build -DskipTests
   artifacts:
     paths:
       - target/*.jar

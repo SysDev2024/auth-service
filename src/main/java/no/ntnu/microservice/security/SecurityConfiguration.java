@@ -1,3 +1,5 @@
+package no.ntnu.microservice.security;
+
 import java.util.Arrays;
 
 import org.springframework.context.annotation.Bean;
@@ -11,7 +13,7 @@ import org.springframework.security.web.authentication.UsernamePasswordAuthentic
 import org.springframework.web.cors.CorsConfiguration;
 import org.springframework.web.cors.CorsConfigurationSource;
 import org.springframework.web.cors.UrlBasedCorsConfigurationSource;
-import no.ntnu.microservice.security.JwtAuthentificationFilter;
+
 import lombok.RequiredArgsConstructor;
 
 @Configuration
@@ -19,17 +21,21 @@ import lombok.RequiredArgsConstructor;
 @RequiredArgsConstructor
 public class SecurityConfiguration {
 
-        private final JwtAuthentificationFilter jwtAuthFilter; // Ensure this class exists and is correctly spelled
+        private final JwtAuthentificationFilter jwtAuthFilter;
+
         private final AuthenticationProvider authenticationProvider;
 
         @Bean
         public SecurityFilterChain securityFilterChain(HttpSecurity http) throws Exception {
+
                 http
-                                .cors().configurationSource(corsConfigurationSource())
-                                .and()
-                                .authorizeHttpRequests(auth -> auth
+                                .cors(customizer -> customizer.configurationSource(corsConfigurationSource()))
+
+                                .csrf(csrf -> csrf.disable())
+                                .authorizeHttpRequests((authz) -> authz
+                                                .requestMatchers("/auth/**").permitAll()
                                                 .anyRequest().authenticated())
-                                .sessionManagement(session -> session
+                                .sessionManagement((session) -> session
                                                 .sessionCreationPolicy(SessionCreationPolicy.STATELESS))
                                 .authenticationProvider(authenticationProvider)
                                 .addFilterBefore(jwtAuthFilter, UsernamePasswordAuthenticationFilter.class);
@@ -37,15 +43,23 @@ public class SecurityConfiguration {
                 return http.build();
         }
 
+        // TODO Use more restrictive settings in production
         @Bean
         public CorsConfigurationSource corsConfigurationSource() {
                 CorsConfiguration configuration = new CorsConfiguration();
-                configuration.setAllowedOrigins(Arrays.asList("*"));
-                configuration.setAllowedMethods(Arrays.asList("GET", "POST", "PUT", "PATCH", "DELETE", "OPTIONS"));
-                configuration.setAllowedHeaders(Arrays.asList("authorization", "content-type", "x-auth-token"));
-                configuration.setExposedHeaders(Arrays.asList("x-auth-token"));
+                configuration.setAllowedOrigins(Arrays.asList("http://localhost:3000"));
+                configuration.setAllowedOrigins(Arrays.asList("https://sysdevservices.tech"));
+                configuration.setAllowedMethods(Arrays.asList("GET", "POST", "PUT", "DELETE", "OPTIONS"));
+                configuration.setAllowedHeaders(Arrays.asList("Authorization", "Content-Type", "X-Auth-Token"));
+                configuration.setExposedHeaders(Arrays.asList("X-Auth-Token"));
+                configuration.setAllowCredentials(true); // Only set this if you need to send cookies or authorization
+                                                         // headers with cross-origin requests
+                configuration.setMaxAge(3600L); // Set how long the response from a pre-flight request can be cached by
+                                                // clients
+
                 UrlBasedCorsConfigurationSource source = new UrlBasedCorsConfigurationSource();
                 source.registerCorsConfiguration("/**", configuration);
                 return source;
         }
+
 }

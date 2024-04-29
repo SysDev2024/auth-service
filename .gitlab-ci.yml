@@ -56,6 +56,6 @@ deploy:
     DOCKER_HOST: "tcp://docker:2375"
     DOCKER_TLS_CERTDIR: ""
   script:
-    - docker build -t reg.sysdevservices.tech/authservice:latest .
+    - docker build --platform linux/amd64 -t reg.sysdevservices.tech/authservice:latest .
     - docker tag reg.sysdevservices.tech/authservice:latest reg.sysdevservices.tech/authservice:latest
-    - docker push --platform linux/amd64 reg.sysdevservices.tech/authservice:latest
+    - docker push reg.sysdevservices.tech/authservice:latest

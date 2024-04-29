@@ -15,6 +15,7 @@ import org.springframework.web.cors.CorsConfigurationSource;
 import org.springframework.web.cors.UrlBasedCorsConfigurationSource;
 
 import lombok.RequiredArgsConstructor;
+import no.ntnu.microservice.security.JwtAuthentificationFilter;
 
 @Configuration
 @EnableWebSecurity
@@ -47,8 +48,7 @@ public class SecurityConfiguration {
         @Bean
         public CorsConfigurationSource corsConfigurationSource() {
                 CorsConfiguration configuration = new CorsConfiguration();
-                configuration.setAllowedOrigins(Arrays.asList("http://localhost:3000"));
-                configuration.setAllowedOrigins(Arrays.asList("https://sysdevservices.tech"));
+                configuration.setAllowedOrigins(Arrays.asList("https://sysdevservices.tech", "http://localhost:3000"));
                 configuration.setAllowedMethods(Arrays.asList("GET", "POST", "PUT", "DELETE", "OPTIONS"));
                 configuration.setAllowedHeaders(Arrays.asList("Authorization", "Content-Type", "X-Auth-Token"));
                 configuration.setExposedHeaders(Arrays.asList("X-Auth-Token"));

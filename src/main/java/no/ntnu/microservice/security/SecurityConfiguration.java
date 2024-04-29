@@ -31,10 +31,10 @@ public class SecurityConfiguration {
                 http
                                 .cors(customizer -> customizer.configurationSource(corsConfigurationSource()))
 
-                                .csrf(csrf -> csrf.disable())
-                                .authorizeHttpRequests((authz) -> authz
-                                                .requestMatchers("/auth/**").permitAll()
-                                                .anyRequest().authenticated())
+
+                                        .authorizeHttpRequests((auth
+
+                                                        .anyRequest().authenticated())
                                 .sessionManagement((session) -> session
                                                 .sessionCreationPolicy(SessionCreationPolicy.STATELESS))
                                 .authenticationProvider(authenticationProvider)
@@ -48,17 +48,43 @@ public class SecurityConfiguration {
         public CorsConfigurationSource corsConfigurationSource() {
                 CorsConfiguration configuration = new CorsConfiguration();
                 configuration.setAllowedOrigins(Arrays.asList("http://localhost:3000"));
+                configuration.setAllowedOrigins(Arrays.asList("https://sysdevservices.tech"));
                 configuration.setAllowedMethods(Arrays.asList("GET", "POST", "PUT", "DELETE", "OPTIONS"));
                 configuration.setAllowedHeaders(Arrays.asList("Authorization", "Content-Type", "X-Auth-Token"));
                 configuration.setExposedHeaders(Arrays.asList("X-Auth-Token"));
-                configuration.setAllowCredentials(true); // Only set this if you need to send cookies or authorization
-                                                         // headers with cross-origin requests
-                configuration.setMaxAge(3600L); // Set how long the response from a pre-flight request can be cached by
-                                                // clients
+     
 
-                UrlBasedCorsConfigurationSource source = new UrlBasedCorsConfigurationSource();
-                source.registerCorsConfiguration("/**", configuration);
+                        configuration.setMaxAge(3600L); // 
+             
+            
+                        UrlBasedCorsConfigurationSource source = new UrlBa
+                
+                
+                        source.registerCorsConfiguration("/**", conf
                 return source;
-        }
+                
 
-}
+                                
+                              
+         
+
+        
+        
+                
+                
+                        
+                                
+                        
+
+                        
+                
+
+                
+                                
+                                
+                                
+
+                
+                                
+                                
+        

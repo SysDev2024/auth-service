@@ -48,6 +48,9 @@ public class AuthService {
                 .phone(request.getPhone())
                 .role(Role.USER)
                 .enabled(false)
+                .isFirstLogin(true)
+                .hasConnectedBankAccount(false)
+                .hasCustomizedGoals(false)
                 .build();
 
         try {

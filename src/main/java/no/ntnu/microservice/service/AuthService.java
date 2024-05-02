@@ -10,7 +10,6 @@ import org.springframework.stereotype.Service;
 
 import jakarta.transaction.Transactional;
 import lombok.RequiredArgsConstructor;
-import lombok.extern.slf4j.Slf4j;
 import no.ntnu.microservice.model.DTO.auth.AuthResponse;
 import no.ntnu.microservice.model.DTO.auth.LoginRequest;
 import no.ntnu.microservice.model.DTO.auth.MessageResponse;
@@ -24,7 +23,6 @@ import no.ntnu.microservice.service.registration.MailService;
 
 @Service
 @RequiredArgsConstructor
-@Slf4j
 public class AuthService {
 
     private final UserRepository userRepository;

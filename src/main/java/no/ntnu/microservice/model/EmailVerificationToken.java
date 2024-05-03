@@ -13,6 +13,8 @@ import lombok.Data;
 import lombok.NoArgsConstructor;
 import lombok.ToString;
 import no.ntnu.microservice.model.sharedmodels.user.User;
+import jakarta.persistence.ManyToOne;
+import jakarta.persistence.JoinColumn;
 
 @Data
 @Entity
@@ -28,13 +30,10 @@ public class EmailVerificationToken {
 
     private String token;
 
-    @OneToOne(fetch = FetchType.LAZY)
+    @ManyToOne
+    @JoinColumn(name = "user_id")
     private User user;
 
     private LocalDateTime expiryDate;
 
-    public Object orElseThrow(Object object) {
-        // TODO(Magnus) Auto-generated method stub
-        throw new UnsupportedOperationException("Unimplemented method 'orElseThrow'");
-    }
 }

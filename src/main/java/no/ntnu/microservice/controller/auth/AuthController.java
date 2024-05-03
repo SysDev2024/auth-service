@@ -14,6 +14,8 @@ import no.ntnu.microservice.model.DTO.auth.LoginRequest;
 import no.ntnu.microservice.model.DTO.auth.MessageResponse;
 import no.ntnu.microservice.model.DTO.auth.RegisterRequest;
 import no.ntnu.microservice.service.AuthService;
+import no.ntnu.microservice.model.DTO.EmailDTO;
+import no.ntnu.microservice.model.DTO.ResetEmailDTO;
 
 import org.springframework.web.bind.annotation.RequestParam;
 
@@ -35,7 +37,7 @@ public class AuthController {
             return ResponseEntity.ok(authService.login(request));
         } catch (Exception ex) {
             AuthResponse errorResponse = new AuthResponse(ex.getMessage());
-            return ResponseEntity.status(HttpStatus.UNAUTHORIZED).body(errorResponse);
+            return ResponseEntity.status(HttpStatus.BAD_REQUEST).body(errorResponse);
         }
     }
 
@@ -45,7 +47,7 @@ public class AuthController {
             return ResponseEntity.ok(authService.register(request));
         } catch (Exception ex) {
             MessageResponse errorResponse = new MessageResponse(ex.getMessage());
-            return ResponseEntity.status(HttpStatus.UNAUTHORIZED).body(errorResponse);
+            return ResponseEntity.status(HttpStatus.BAD_REQUEST).body(errorResponse);
         }
     }
 
@@ -55,11 +57,30 @@ public class AuthController {
         return ResponseEntity.ok(authService.verifyEmail(token));
     }
 
-    @GetMapping("/validateToken")
-    public ResponseEntity<Boolean> validateToken(@RequestParam String token) {
-
+    @PostMapping("/refresh")
+    public ResponseEntity<Boolean> refreshToken(@RequestBody String token) {
         return ResponseEntity.ok(true);
 
+    }
+
+    @PostMapping("/forgotPassword")
+    public ResponseEntity<MessageResponse> forgotPassword(@RequestBody EmailDTO email) {
+        try {
+            return ResponseEntity.ok(authService.forgotPassword(email));
+        } catch (Exception ex) {
+            MessageResponse errorResponse = new MessageResponse(ex.getMessage());
+            return ResponseEntity.status(HttpStatus.BAD_REQUEST).body(errorResponse);
+        }
+    }
+
+    @PostMapping("/resetPassword")
+    public ResponseEntity<AuthResponse> resetPassword(@RequestBody ResetEmailDTO resetEmailDTO) {
+        try {
+            return ResponseEntity.ok(authService.resetPassword(resetEmailDTO));
+        } catch (Exception ex) {
+            AuthResponse errorResponse = new AuthResponse(ex.getMessage());
+            return ResponseEntity.status(HttpStatus.BAD_REQUEST).body(errorResponse);
+        }
     }
 
 }

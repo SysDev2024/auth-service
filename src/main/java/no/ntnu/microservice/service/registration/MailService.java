@@ -37,7 +37,7 @@ public class MailService {
                         "Du kan også verdifisere deg ved å bruke en av disse linkene\n\n"
                         +
                         "Prod-miljø:\n" +
-                        "https://sysdevservices.tech/login/verifyEmail/%s\n\n" +
+                        "https://sparesti.tech/login/verifyEmail/%s\n\n" +
                         "Lokal Docker-utvikling:\n" +
                         "http://127.0.0.1:80/login/verifyEmail/%s\n\n" +
                         "For å verdifisere bruker med microservice endepunkt, send en GET-forespørsel til:\n" +
@@ -70,7 +70,7 @@ public class MailService {
                         "For å tilbakestille passordet på forskjellige plattformer, vennligst bruk den relevante lenken nedenfor basert på ditt bruksmiljø:\n\n"
                         +
                         "Prod-miljø:\n" +
-                        "https://sysdevservices.tech/login/resetPassword/%s\n\n" +
+                        "https://sparesti.tech/login/resetPassword/%s\n\n" +
                         "Lokal Docker-utvikling:\n" +
                         "http://127.0.0.1:80/login/resetPassword/%s\n\n" +
                         "For å tilbakestille passordet med microservice endepunkt, send en POST-forespørsel til:\n" +

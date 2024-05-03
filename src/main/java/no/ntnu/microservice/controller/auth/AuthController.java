@@ -18,9 +18,6 @@ import no.ntnu.microservice.service.AuthService;
 import no.ntnu.microservice.model.DTO.EmailDTO;
 import no.ntnu.microservice.model.DTO.ResetEmailDTO;
 
-import io.swagger.v3.oas.annotations.Operation;
-import io.swagger.v3.oas.annotations.Parameter;
-import io.swagger.v3.oas.annotations.media.ArraySchema;
 import io.swagger.v3.oas.annotations.media.Content;
 import io.swagger.v3.oas.annotations.media.Schema;
 import io.swagger.v3.oas.annotations.responses.ApiResponse;

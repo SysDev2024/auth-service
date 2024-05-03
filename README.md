@@ -10,7 +10,7 @@ Swagger documentaion is available when running the location localy in spring, do
 
 - **Local mvn spring-boot run**: `http://localhost:8111/auth/swagger-ui.html`
 - **Local docker run**: `http://localhost:8111/auth/swagger-ui.html`
-- **Endpoint API gateway production server**: `https://api.sparesti.tech/auth/Hello/auth/swagger-ui.html`
+- **Endpoint API gateway production server**: `https://api.sparesti.tech/auth/swagger-ui.html`
 
 ## Getting Started
 

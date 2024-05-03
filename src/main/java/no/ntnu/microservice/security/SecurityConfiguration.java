@@ -44,7 +44,7 @@ public class SecurityConfiguration {
         public CorsConfigurationSource corsConfigurationSource() {
                 CorsConfiguration configuration = new CorsConfiguration();
                 configuration.setAllowedOrigins(Arrays.asList("https://sysdevservices.tech", "http://localhost:3000",
-                                "http://localhost:80"));
+                                "http://localhost:80", "https://sparesti.tech", "http://127.0.0.1:80"));
                 configuration.setAllowedMethods(Arrays.asList("GET", "POST", "PUT", "DELETE", "OPTIONS"));
                 configuration.setAllowedHeaders(Arrays.asList("Authorization", "Content-Type", "X-Auth-Token"));
                 configuration.setExposedHeaders(Arrays.asList("X-Auth-Token"));

@@ -73,7 +73,14 @@ The same test user is provided in the docker-compose containing all the services
 To clone the repository and navigate into the authService directory, run:
 
 ```bash
-git clone git@gitlab.stud.idi.ntnu.no:idatt2106_2024_11/authservice.git
+git clone git@gitlab.stud.idi.ntnu.no:idatt2106_2024_11/authservice.git --recurse
+
+#This will pull the submodules aswell
+
+cd authservice
+git submodule init
+git submodule update --remote
+#This is to make sure the submodules are updated
 
 #Remember to have valid SSH Keys to gitlab!
 ```

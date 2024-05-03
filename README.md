@@ -80,7 +80,7 @@ git clone git@gitlab.stud.idi.ntnu.no:idatt2106_2024_11/auth-service.git --recur
 
 #This will pull the submodules aswell
 
-cd authservice
+cd auth-service
 git submodule init
 git submodule update --remote
 #This is to make sure the submodules are updated
@@ -193,7 +193,7 @@ This is also done automatically in the CICD pipeline
 
 Once the AuthService is running, either through Maven locally or via Docker, you can access its endpoints and Swagger UI:
 
-- **Swagger UI**: Navigate to `http://localhost:8111/swagger-ui.html` in your web browser to view and interact with the API documentation and test out the endpoints.
+- **Swagger UI**: Navigate to `http://localhost:8111/auth/swagger-ui.html` in your web browser to view and interact with the API documentation and test out the endpoints.
 
 ## Running the whole system
 

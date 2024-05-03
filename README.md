@@ -2,37 +2,47 @@
 
 ## Overview
 
-AuthService is a microservice in our larger architecture, designed to handle user authentication and authorization tasks. It supports operations for user registration, login, and email verification.
+AuthService is a microservice in our larger architecture, designed to handle user authorization tasks such as user registration and log inn, generating JWT token,validating email and reseting password. It supports operations for user registration, login, and email verification.
 
-## Features
+## Swagger Docs
 
-- **User Registration**: Register new users via the `/auth/register` endpoint.
-- **User Login**: Authenticate users and provide tokens via the `/auth/login` endpoint.
-- **Email Verification**: Verify user email addresses via the `GET /verify/` endpoint.
-- **Swagger Documentation**: Access the Swagger UI for the service's API documentation at `/swagger-ui.html`.
+Swagger documentaion is available when running the location localy in spring, docker or on a endpoint in the produciton server.
+
+- **Local mvn spring-boot run**: `http://localhost:8111/auth/swagger-ui.html`
+- **Local docker run**: `http://localhost:8111/auth/swagger-ui.html`
+- **Endpoint API gateway production server**: `https://api.sparesti.tech/auth/Hello/auth/swagger-ui.html`
 
 ## Getting Started
-
-## Test Access Point
-
-### Testing and Development
-
-For development and testing purposes, the AuthService is directly accessible via the following URL: [https://auth.sysdevservices.tech/](https://auth.sysdevservices.tech/)
-
-This test endpoint allows developers and testers to interact with the AuthService independently of the larger system.
 
 ### Production Environment
 
 In the production environment, AuthService is designed to operate within a secure, private network. It communicates with other services through this internal network, ensuring enhanced security and performance:
 
 - **Internal Network**: AuthService and other microservices communicate over a private network, isolated from public access. This communication is done done through RabbitMQ.
-- **API Gateway**: The only point of public access to AuthService in production is through the API gateway. This gateway routes external requests to the appropriate services securely. 
+- **API Gateway**: The only point of public access to AuthService in production is through the API gateway. This gateway routes external requests to the appropriate services securely.
 
-[https://api.sysdevservices.tech/](https://api.sysdevservices.tech/)
+* The API Gateway takes care of all JWT authentication, while authservice is used for authorization tasks.
+
+[https://api.sparesti.tech/auth](https://api.sparesti.tech/auth)
+
+[https://api.sparesti.tech/auth/swagger-ui.html](https://api.sparesti.tech/auth/swagger-ui.html)
 
 This setup helps in managing security and traffic efficiently, ensuring that direct access to individual microservices like AuthService is restricted and controlled through the API gateway.
 
+### Test Users
 
+Test user for [https://api.sparesti.tech/auth](https://api.sparesti.tech/auth)
+is
+
+```
+
+{
+   "username": test
+   "password": test
+}
+```
+
+The same test user is provided in the docker-compose containing all the services. To run the spring-boot authService with maven, you can use the flag `--Dspring.profiles.active=build` to use a auto-generated H2 database. No user credentials is generated in H2, but you can register your own users. You can also run your own local MySQL database, and the maven spring-boot AuthService will try to connect to 127.0.0.1, with username: `service` and Password: `service`. You can edit the application.properties to change the database. Hibernate will auto-generate the tables.
 
 ### Prerequisites
 
@@ -48,7 +58,7 @@ This setup helps in managing security and traffic efficiently, ensuring that dir
 
 > NB!:
 > To build the docker you would still need maven and Java 17+
-> You could still run the docker by downloading it from the docker repository
+> You could still run the docker by downloading it from our docker repository
 
 #### Running Everything
 
@@ -87,6 +97,37 @@ To build and run AuthService locally using Maven, follow these steps:
    ```
 
    This will start the AuthService on the default port defined in the application's configuration (typically port 8111).
+
+   Remember to have a MySQL database running. The easiest way is to run a MySQL docker:
+
+   ```
+   docker run -d \
+    --name mysql \
+    -e MYSQL_ROOT_PASSWORD=root \
+    -e MYSQL_DATABASE=prodDB \
+    -e MYSQL_USER=service \
+    -e MYSQL_PASSWORD=service \
+    -p 3306:3306 \
+    --restart unless-stopped \
+    mysql:8.0
+
+   ```
+
+   Or use a docker-compose with MySQL `docker-compose.yml`:
+
+```
+   mysql:
+        image: mysql:8.0
+        container_name: mysql
+        environment:
+        MYSQL_ROOT_PASSWORD: root
+        MYSQL_DATABASE: prodDB
+        MYSQL_USER: service
+        MYSQL_PASSWORD: service
+        ports:
+            - "3306:3306"
+
+```
 
 ### Building and Running with Docker Locally
 
@@ -129,13 +170,14 @@ If you prefer not to build the image yourself, you can pull it directly from the
    As before, this will make the AuthService available on `localhost:8111`.
 
 ### Running tests
+
 Testing the AuthService can be done by using the maven command:
 
- ```
+```
 mvn run test
- ```
-This is also done automatically in the CICD pipeline
+```
 
+This is also done automatically in the CICD pipeline
 
 ### Accessing the Service
 
@@ -147,16 +189,18 @@ Once the AuthService is running, either through Maven locally or via Docker, you
 
 ### Docker Compose
 
-To run AuthService as part of the full architecture, ensure you have Docker Compose installed and use the following command in the directory containing the `docker-compose.yml` file:
+To run AuthService as part of the full architecture localy, ensure you have Docker Compose installed and use the following command in the `Local` directory containing the `docker-compose.yml` file:
 
 ```bash
 docker-compose up
 ```
+
 To run the docker-compose in the backgroun use this command:
+
 ```bash
 docker-compose up -d
 ```
-The docker compose setup includes a MySql database that spins up test data. This data and this database will be different for the production database. 
+
+The docker compose setup includes a MySql database that spins up test data. This data and this database will be different for the production database.
 
 ##### As teachers you can ofc access our actual production database aswell
-

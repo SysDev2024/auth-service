@@ -53,8 +53,12 @@ public class AuthController {
 
     @GetMapping("/verify")
     public ResponseEntity<AuthResponse> verifyEmail(String token) {
-
-        return ResponseEntity.ok(authService.verifyEmail(token));
+        try {
+            return ResponseEntity.ok(authService.verifyEmail(token));
+        } catch (Exception ex) {
+            AuthResponse errorResponse = new AuthResponse(ex.getMessage());
+            return ResponseEntity.status(HttpStatus.BAD_REQUEST).body(errorResponse);
+        }
     }
 
     @PostMapping("/refresh")

@@ -14,8 +14,6 @@ public class MailService {
 
     private final JavaMailSender mailSender;
 
-    private static final String siteURL = "http://localhost:8080/api/v1/auth";
-
     public void sendVerificationEmail(User user, String token) {
         SimpleMailMessage mailMessage = new SimpleMailMessage();
 

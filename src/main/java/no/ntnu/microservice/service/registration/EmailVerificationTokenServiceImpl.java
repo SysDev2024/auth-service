@@ -32,8 +32,6 @@ public class EmailVerificationTokenServiceImpl implements EmailVerificationToken
         verificationTokenRepository.save(token);
     }
 
-    // TODO add custom exeption
-
     @Override
     public EmailVerificationToken getVerificationToken(String token) {
         Optional<EmailVerificationToken> tokenOptional = verificationTokenRepository.findByToken(token);

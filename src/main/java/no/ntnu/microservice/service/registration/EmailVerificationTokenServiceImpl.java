@@ -39,6 +39,6 @@ public class EmailVerificationTokenServiceImpl implements EmailVerificationToken
         Optional<EmailVerificationToken> tokenOptional = verificationTokenRepository.findByToken(token);
         return tokenOptional.orElseThrow(() -> new IllegalArgumentException("Token not found"));
 
-    }
+    };
 
 }

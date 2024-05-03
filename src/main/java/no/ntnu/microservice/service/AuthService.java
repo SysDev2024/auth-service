@@ -20,6 +20,8 @@ import no.ntnu.microservice.repository.UserRepository;
 import no.ntnu.microservice.security.JwtService;
 import no.ntnu.microservice.service.registration.EmailVerificationTokenService;
 import no.ntnu.microservice.service.registration.MailService;
+import no.ntnu.microservice.model.DTO.EmailDTO;
+import no.ntnu.microservice.model.DTO.ResetEmailDTO;
 
 @Service
 @RequiredArgsConstructor
@@ -37,7 +39,7 @@ public class AuthService {
     private final EmailVerificationTokenService emailverificationTokenService;
 
     public MessageResponse register(RegisterRequest request) {
-        var user = User.builder()
+        User user = User.builder()
                 .username(request.getUsername())
                 .firstName(request.getFirstName())
                 .lastName(request.getLastName())
@@ -61,9 +63,6 @@ public class AuthService {
         mailService.sendVerificationEmail(user, token);
 
         return MessageResponse.builder().message("User registered. Check your email to validate account").build();
-
-        // var jwtToken = jwtService.generateToken(user);
-        // return AuthResponse.builder().token(jwtToken).build();
     }
 
     @Transactional
@@ -75,7 +74,7 @@ public class AuthService {
             throw new IllegalStateException("Token expired");
         }
 
-        var user = userRepository.findById(verificationToken.getUser().getId())
+        User user = userRepository.findById(verificationToken.getUser().getId())
                 .orElseThrow(() -> new IllegalStateException("User not found"));
 
         // Check if the user is already enabled
@@ -85,7 +84,7 @@ public class AuthService {
 
         user.setEnabled(true);
         userRepository.save(user);
-        var jwtToken = jwtService.generateToken(user);
+        String jwtToken = jwtService.generateToken(user);
         return AuthResponse.builder().token(jwtToken).build();
 
     }
@@ -99,9 +98,38 @@ public class AuthService {
         } catch (Exception e) {
             throw new IllegalArgumentException("User not found, wrong username or password");
         }
-        var user = userRepository.findByUsername(request.getUsername()).orElseThrow(
+        User user = userRepository.findByUsername(request.getUsername()).orElseThrow(
                 () -> new IllegalArgumentException("User not found, wrong username or password"));
-        var jwtToken = jwtService.generateToken(user);
+        String jwtToken = jwtService.generateToken(user);
+        return AuthResponse.builder().token(jwtToken).build();
+    }
+
+    public MessageResponse forgotPassword(EmailDTO email) {
+
+        User user = userRepository.findByEmail(email.getEmail())
+                .orElseThrow(() -> new IllegalArgumentException("User not found"));
+
+        String token = emailverificationTokenService.generateVerificationToken(user);
+        mailService.sendResetPasswordEmail(user, token);
+
+        return MessageResponse.builder().message("Check your email to reset password").build();
+    }
+
+    public AuthResponse resetPassword(ResetEmailDTO resetEmailDTO) {
+
+        var verificationToken = emailverificationTokenService.getVerificationToken(resetEmailDTO.getToken());
+
+        if (verificationToken.getExpiryDate().isBefore(LocalDateTime.now())) {
+            throw new IllegalStateException("Token expired");
+        }
+
+        User user = userRepository.findById(verificationToken.getUser().getId())
+                .orElseThrow(() -> new IllegalStateException("User not found"));
+
+        user.setPassword(passwordEncoder.encode(resetEmailDTO.getPassword()));
+        userRepository.save(user);
+
+        String jwtToken = jwtService.generateToken(user);
         return AuthResponse.builder().token(jwtToken).build();
     }
 

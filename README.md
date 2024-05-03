@@ -20,6 +20,9 @@ In the production environment, AuthService is designed to operate within a secur
 
 - **Internal Network**: AuthService and other microservices communicate over a private network, isolated from public access. This communication is done done through RabbitMQ.
 - **API Gateway**: The only point of public access to AuthService in production is through the API gateway. This gateway routes external requests to the appropriate services securely.
+- **Cloudflared Reverse Proxy Tunnel**
+We use a Cloudflare Tunnel to securely expose the API Gateway in our private network to the internet. This approach ensures that the actual network endpoints of our services are never directly exposed online, which dramatically reduces the surface area for potential attacks. Cloudflare also handels TLS, DDOS Attacks, RateLimiting and Caching. 
+
 
 * The API Gateway takes care of all JWT authentication, while authservice is used for authorization tasks.
 
@@ -73,7 +76,7 @@ The same test user is provided in the docker-compose containing all the services
 To clone the repository and navigate into the authService directory, run:
 
 ```bash
-git clone git@gitlab.stud.idi.ntnu.no:idatt2106_2024_11/authservice.git --recurse
+git clone git@gitlab.stud.idi.ntnu.no:idatt2106_2024_11/auth-service.git --recurse
 
 #This will pull the submodules aswell
 
